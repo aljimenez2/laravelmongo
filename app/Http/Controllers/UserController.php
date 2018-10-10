@@ -69,10 +69,16 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($description = null, $photo = null)
     {
         $users = new User();
         $user = $users->where("_id",'=',"5bbe6beded4e3e2488005312")->first();
+        if($description == null &&  $photo != null){
+            $user->photo = "";
+        }elseif ($photo == null && $description != null){
+            $user->description = "";
+        }
+        $user->save();
         return $user;
     }
 
