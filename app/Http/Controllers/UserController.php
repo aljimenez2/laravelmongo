@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('position')->get();
         return view('welcome', compact('users'));
     }
 
@@ -35,8 +35,10 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $position = User::all()->count();
         $user = new User;
         $user->id = "";
+        $user->position = $position+1;
         $user->description =  $request->input('description');
         $_photo = $request->file("img");
         $user->photo = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
@@ -67,9 +69,11 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $users = new User();
+        $user = $users->where("_id",'=',"5bbe6beded4e3e2488005312")->first();
+        return $user;
     }
 
     /**
@@ -81,7 +85,8 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::where($id);
+        return success;
     }
 
     /**
@@ -92,6 +97,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $position = User::all()->count();
+        $user = new User;
+        $user->id = "";
+        $user->position = $position+1;
+        $user->description =  $request->input('description');
+        $_photo = $request->file("img");
+        $user->photo = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
+        $img = Image::make($_photo->getRealPath());
+        $img->resize(800, 800, function ($constrain) {
+            $constrain->aspectRatio();
+        });
+        $img->stream();
+        Storage::disk('local')->put('articles/photos' . '/' .  $user->photo, $img, 'public');
+        $user->save();
+        return success;
     }
 }
