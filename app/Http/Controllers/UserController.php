@@ -25,14 +25,6 @@ class UserController extends Controller
      */
     public function create()
     {
-      $user = new User;
-      $user->id = "Alejandro";
-      $user->name = "Alejandro";
-      $user->description =  "Nuevo Ingrego";
-      $user->photo = "56465496847894.png";
-      $user->save();
-
-      return "success";
     }
 
     /**
@@ -43,7 +35,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = new User;
+        $user->id = "";
+        $user->description =  $request->input('description');
+        $_photo = $request->file("img");
+        $user->photo = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
+        $img = Image::make($_photo->getRealPath());
+        $img->resize(800, 800, function ($constrain) {
+            $constrain->aspectRatio();
+        });
+        $img->stream();
+        Storage::disk('local')->put('articles/photos' . '/' .  $user->photo, $img, 'public');
+        $user->save();
+        return success;
     }
 
     /**
