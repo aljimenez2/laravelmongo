@@ -1,100 +1,24 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: alejandroj
- * Date: 02/10/2018
- * Time: 9:57
- *
- *
- */
-?>
-@include('head/head')
-@include('admin/navbar/navbar')
+@include('head')
 <div class="container">
     <div class="row">
-        @include('admin/sidebar/sidebar')
-        <div class="col-10 offset-1 col-sm-10 col-md-8  offset-md-1  my-4">
+        <div class="col-10 offset-1 col-sm-10 col-md-8 offset-md-1 my-4">
             <div class="row my-4">
                 <div class="col-12 col-sm-12 col-md-6 text-left">
-                    <h2>Articulos vista inicial</h2>
-                </div>
-                <div class="col-12 col-sm-12 col-md-6 text-right">
-                    <bottom class="btn btn-danger" id="descartar">
-                        Descartar
-                    </bottom>
-                    <bottom class="btn btn-primary" id="save">
-                        Guardar
-                    </bottom>
+                    <h2>Usuarios</h2>
                 </div>
             </div>
             <div class="board">
                 <div class="board-column todo">
                     <div class="board-column-header bg-light-blue">Productos de primera necesidad</div>
                     <div class="board-column-content">
-                        @foreach($articles_p1 as $article)
-                            <div class="board-item" id="{{$article->id}}" name="1">
-                                <?php $principal_photo = \App\Photo::getArticlesPrimaryPhoto($article->id);?>
+                        @foreach($users as $user)
+                            <div class="board-item" id="{{$user->id}}" name="1">
                                 <div class="board-item-content">
                                     <div class="card-img-top">
                                         <span class="helper"></span>
-                                        <img src="@if($principal_photo != ""){{asset("uploads/articles/photos/".$principal_photo)}} @else {{ asset("img/picture.png") }} @endif"
-                                             alt="Card image cap" @if($principal_photo == "") class="no-image" @endif>
+                                        <img src=""  alt="Card image cap" >
                                     </div>
-                                    <p class="card-text">{{ $article->name }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="board-column working">
-                    <div class="board-column-header">Articulo destacado posicion grande</div>
-                    <div class="board-column-content">
-                        @foreach($articles_p2 as $article)
-                            <div class="board-item" id="{{$article->id}}" name="1">
-                                <?php $principal_photo = \App\Photo::getArticlesPrimaryPhoto($article->id);?>
-                                <div class="board-item-content">
-                                    <div class="card-img-top">
-                                        <span class="helper"></span>
-                                        <img src="@if($principal_photo != ""){{asset("uploads/articles/photos/".$principal_photo)}} @else {{ asset("img/picture.png") }} @endif"
-                                             alt="Card image cap" @if($principal_photo == "") class="no-image" @endif>
-                                    </div>
-                                    <p class="card-text">{{ $article->name }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="board-column">
-                    <div class="board-column-header bg-dark-turquesa">Articulos destacados posicion pequeña</div>
-                    <div class="board-column-content">
-                        @foreach($articles_p3 as $article)
-                            <div class="board-item" id="{{$article->id}}" name="1">
-                                <?php $principal_photo = \App\Photo::getArticlesPrimaryPhoto($article->id);?>
-                                <div class="board-item-content">
-                                    <div class="card-img-top">
-                                        <span class="helper"></span>
-                                        <img src="@if($principal_photo != ""){{asset("uploads/articles/photos/".$principal_photo)}} @else {{ asset("img/picture.png") }} @endif"
-                                             alt="Card image cap" @if($principal_photo == "") class="no-image" @endif>
-                                    </div>
-                                    <p class="card-text">{{ $article->name }}</p>
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-                <div class="board-column done">
-                    <div class="board-column-header bg-light-green">Todos los articulos</div>
-                    <div class="board-column-content">
-                        @foreach($_articles as $article)
-                            <div class="board-item" id="{{$article->id}}" name="1">
-                                <?php $principal_photo = \App\Photo::getArticlesPrimaryPhoto($article->id);?>
-                                <div class="board-item-content">
-                                    <div class="card-img-top">
-                                        <span class="helper"></span>
-                                        <img src="@if($principal_photo != ""){{asset("uploads/articles/photos/".$principal_photo)}} @else {{ asset("img/picture.png") }} @endif"
-                                             alt="Card image cap" @if($principal_photo == "") class="no-image" @endif>
-                                    </div>
-                                    <p class="card-text">{{ $article->name }}</p>
+                                    <p class="card-text">{{ $user->name }}</p>
                                 </div>
                             </div>
                         @endforeach
