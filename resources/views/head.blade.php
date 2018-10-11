@@ -30,6 +30,7 @@
     <script src="{{asset('js/jquery.creditCardValidator.js')}}"></script>
     <script src="{{asset('js/muuri/muuri.js')}}"></script>
     <script src="{{asset('js/muuri/hammer.min.js')}}"></script>
+    <script src="{{asset('js/jquery.toaster.js')}}"></script>
     <script src="https://unpkg.com/muuri@0.7.1/dist/muuri.min.js"></script>
 
 </head>

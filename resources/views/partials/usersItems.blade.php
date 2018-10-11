@@ -11,7 +11,8 @@
                     <h3 class="card-text text-center">{{ $user->description }}</h3>
                     <p class="text-center">
                         <a href="#"><i class="fa fa-edit fa-1x my-3"></i> Edit</a>
-                        <a href="#" class="delete" data-selector="{{$user->id}}"><i class="fa fa-trash fa-1x my-3"></i> Delete </a>
+                        <a href="#" class="delete" data-selector="{{$user->id}}"><i class="fa fa-trash fa-1x my-3"></i>
+                            Delete </a>
                     </p>
                 </div>
             </div>
@@ -41,7 +42,14 @@
                 dragSortInterval: 0,
                 dragContainer: document.body,
                 dragReleaseDuration: 400,
-                dragReleaseEasing: 'ease'
+                dragReleaseEasing: 'ease',
+                dragStartPredicate: function (item, event) {
+                    // Prevent first item from being dragged.
+                    // For other items use the default drag start predicate.
+                    item.on('click', function () {
+                        return Muuri.ItemDrag.defaultStartPredicate(item, event);
+                    });
+                }
             })
                 .on('dragStart', function (item) {
                     // Let's set fixed widht/height to the dragged item
@@ -95,7 +103,7 @@
         $.ajax({
             url: "{{url('users/delete')}}",
             type: "POST",
-            data: {"id": id} ,
+            data: {"id": id},
             success: function (msg) {
                 $('#boardOfUsers').empty();
                 $('#boardOfUsers').append(msg);
