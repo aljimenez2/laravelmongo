@@ -16,5 +16,9 @@ Route::get('/', function () {
 });
 
 Route::get('users', 'UserController@index');
-Route::get('users/create', 'UserController@store');
+Route::post('users/store', 'UserController@store');
+Route::post('users/delete', 'UserController@delete');
+Route::post('save/order', 'UserController@saveOrder');
+Route::get('updated/users/list', 'UserController@updateUserList');
+Route::get('users/createInitial', 'UserController@createInitial');
 Route::get('users/edit', 'UserController@edit');

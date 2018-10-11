@@ -9,7 +9,6 @@ class User extends Authenticatable
 {
     protected $connection = 'mongodb';
     protected $collection = 'users';
-    protected $primaryKey = 'id';
     use Notifiable;
 
     /**

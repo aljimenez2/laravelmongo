@@ -12,10 +12,9 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/cropper.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/customFileInputs/component.css') }}">
+
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css"
@@ -27,14 +26,9 @@
             crossorigin="anonymous"></script>
     {{--<script src="{{asset('js/jquery.validate.js')}}"></script>--}}
     <script src="{{asset('js/bootstrap.js')}}"></script>
-    <script src="{{asset('js/echo.js')}}"></script>
-    <script src="{{asset('js/jquery.elevatezoom.js')}}"></script>
-    <script src="{{asset('js/cropper.min.js')}}"></script>
-    <script src="{{asset('js/jquery.toaster.js')}}"></script>
-    <script src="{{asset('js/jquery.creditCardValidator.js')}}"></script>
     <script src="{{asset('js/customFileInput/jquery.custom-file-input.js')}}"></script>
+    <script src="{{asset('js/jquery.creditCardValidator.js')}}"></script>
     <script src="{{asset('js/muuri/muuri.js')}}"></script>
-    <script src="https://unpkg.com/web-animations-js@2.3.1/web-animations.min.js"></script>
     <script src="{{asset('js/muuri/hammer.min.js')}}"></script>
     <script src="https://unpkg.com/muuri@0.7.1/dist/muuri.min.js"></script>
 

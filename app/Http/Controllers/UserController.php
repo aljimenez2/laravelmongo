@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -23,8 +25,33 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function createInitial()
     {
+        $position = User::all()->count();
+        $user = new User;
+        $user->position = $position+1;
+        $user->photo = "wolverine.jpg";
+        $user->description = "Wolverine X-MEN";
+        if($user->save()){
+            return "success";
+        }else{
+            return "Error saving initial data";
+        }
+    }
+
+    public function saveOrder(Request $request){
+        $userArray = $request->input('userArray');
+        foreach ($userArray[0] as $index => $_user){
+            $mUser = new User();
+            $user = $mUser->where('_id', $_user)->first();
+            $user->position = ($index + 1);
+            $user->save();
+        }
+    }
+
+    public function updateUserList(){
+        $users = User::orderBy('position')->get();
+        return view("partials.usersitems", compact('users'));
     }
 
     /**
@@ -37,19 +64,20 @@ class UserController extends Controller
     {
         $position = User::all()->count();
         $user = new User;
-        $user->id = "";
         $user->position = $position+1;
         $user->description =  $request->input('description');
-        $_photo = $request->file("img");
-        $user->photo = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
+        $_photo = $request->file("photo");
+        $photoname = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
+        $user->photo =$photoname;
         $img = Image::make($_photo->getRealPath());
-        $img->resize(800, 800, function ($constrain) {
+        $img->resize(320, 320, function ($constrain) {
             $constrain->aspectRatio();
         });
         $img->stream();
-        Storage::disk('local')->put('articles/photos' . '/' .  $user->photo, $img, 'public');
+        Storage::disk('public')->put($photoname, $img, 'public');
         $user->save();
-        return success;
+        $users = User::orderBy('position')->get();
+        return view("partials.usersitems", compact('users'));
     }
 
     /**
@@ -101,22 +129,13 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        $position = User::all()->count();
-        $user = new User;
-        $user->id = "";
-        $user->position = $position+1;
-        $user->description =  $request->input('description');
-        $_photo = $request->file("img");
-        $user->photo = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
-        $img = Image::make($_photo->getRealPath());
-        $img->resize(800, 800, function ($constrain) {
-            $constrain->aspectRatio();
-        });
-        $img->stream();
-        Storage::disk('local')->put('articles/photos' . '/' .  $user->photo, $img, 'public');
-        $user->save();
-        return success;
+        $dUser = new User();
+        $id = $request->input("id");
+        $user = $dUser->where('id', $id)->first();
+        $user->destroy();
+        $users = User::orderBy('position')->get();
+        return view("partials.usersitems", compact('users'));
     }
 }
