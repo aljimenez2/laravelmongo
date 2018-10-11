@@ -9,6 +9,10 @@
                         <img src="{{ asset('img/'.$user->photo) }}" alt="Card image cap">
                     </div>
                     <h3 class="card-text text-center">{{ $user->description }}</h3>
+                    <p class="text-center">
+                        <a href="#"><i class="fa fa-edit fa-1x my-3"></i> Edit</a>
+                        <a href="#" class="delete" data-selector="{{$user->id}}"><i class="fa fa-trash fa-1x my-3"></i> Delete </a>
+                    </p>
                 </div>
             </div>
         @endforeach
@@ -85,7 +89,22 @@
         // array, so we can access it later on.
         columnGrids.push(grid);
     });
-
+    $(".delete").on('click', function () {
+        console.log("click");
+        var id = $(this).attr('data-selector');
+        $.ajax({
+            url: "{{url('users/delete')}}",
+            type: "POST",
+            data: {"id": id} ,
+            success: function (msg) {
+                $('#boardOfUsers').empty();
+                $('#boardOfUsers').append(msg);
+            },
+            cache: false,
+            contentType: false,
+            processData: false
+        });
+    });
 
     // Instantiate the board grid so we can drag those
     // columns around.

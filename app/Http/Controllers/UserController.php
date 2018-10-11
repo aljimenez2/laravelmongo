@@ -17,7 +17,8 @@ class UserController extends Controller
     public function index()
     {
         $users = User::orderBy('position')->get();
-        return view('welcome', compact('users'));
+        $counter = User::all()->count();
+        return view('welcome', compact('users', 'counter'));
     }
 
     /**
@@ -133,8 +134,7 @@ class UserController extends Controller
     {
         $dUser = new User();
         $id = $request->input("id");
-        $user = $dUser->where('id', $id)->first();
-        $user->destroy();
+        $user = $dUser->where('_id', $id)->delete();
         $users = User::orderBy('position')->get();
         return view("partials.usersitems", compact('users'));
     }

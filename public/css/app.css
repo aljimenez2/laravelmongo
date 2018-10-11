@@ -2,6 +2,10 @@
     font-family: 'OrkneyRegular';
     src: url('../fonts/orkney/Orkney Regular.ttf');
 }
+@font-face {
+    font-family: 'Digital7';
+    src: url('../fonts/digital-7/digital-7.ttf');
+}
 
 html {
     height: 100%;
@@ -25,6 +29,16 @@ body {
     font-weight: normal;
     font-style: normal;
     font-size: 0.85em;
+}
+.counter {
+    font-family: 'Digital7' !important;
+    font-size: 3rem;
+    color: #ffffff;
+    background-color: #000000;
+    border-radius: 4px;
+    padding: 4px;
+    width: 120px;
+    text-align: center;
 }
 
 /*Imagenes*/
@@ -196,7 +210,7 @@ body {
     position: absolute;
     left: 0;
     right: 0;
-    width: 45%;
+    width: 50%;
     margin: auto;
     background: #f0f0f0;
     border-radius: 3px;

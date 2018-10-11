@@ -17,7 +17,7 @@ Route::get('/', function () {
 
 Route::get('users', 'UserController@index');
 Route::post('users/store', 'UserController@store');
-Route::post('users/delete', 'UserController@delete');
+Route::post('users/delete', 'UserController@destroy');
 Route::post('save/order', 'UserController@saveOrder');
 Route::get('updated/users/list', 'UserController@updateUserList');
 Route::get('users/createInitial', 'UserController@createInitial');
