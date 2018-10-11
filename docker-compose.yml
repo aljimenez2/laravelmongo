@@ -24,7 +24,8 @@ services:
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
-      - MONGO_DATABASE = users
+      - MONGODB_DATABASE = users
+      - MONGODB_COLLECTION = users
     volumes:
       - ./data/db:/data/db
     ports:
