@@ -6,7 +6,7 @@ services:
       build: .
       volumes:
         # this sync our source code to the container
-        - ./var/www/html/
+        - /var/www/html/
       links:
         - mongodb
       depends_on:
@@ -25,9 +25,8 @@ services:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
       - MONGODB_DATABASE = users
-      - MONGODB_COLLECTION = users
     volumes:
-      - ./data/db:/data/db
+      - ./data/db/:/data/db/bash
     ports:
         - 27017:27017
     command: mongod --smallfiles --logpath=/dev/null # --quiet

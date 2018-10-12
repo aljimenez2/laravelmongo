@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Eloquent\Model as Authenticatable ;
 
 class User extends Authenticatable
 {
-    protected $connection = 'mongodb';
+    protected $connection = 'users';
     protected $collection = 'users';
     use Notifiable;
 
