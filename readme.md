@@ -32,8 +32,13 @@ To see the page please, use this address in your browser
 ```
 URL 192.168.99.100
 PORT 8100
-
+--------------------
 192.168.99.100:8100
+--------------------
+
+or
+--------------------
+localhost:8100
 ```
 
 Other Platforms 
