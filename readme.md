@@ -52,7 +52,7 @@ testb     -        virtualbox   Running   tcp://192.168.99.101:2376           v1
 Once you are in the main page, go to the url. 
 This will create a preloaded info so you can star using the APP.
 ```
-http://127.0.0.1:8000/users/createInitial
+http://192.168.99.100:8100/users/createInitial
 ```
 
 ## Prerequisites
