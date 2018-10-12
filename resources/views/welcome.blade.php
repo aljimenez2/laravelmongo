@@ -41,7 +41,7 @@
         </div>
     </div>
 </div>
-@include('footer')
+@extends('footer')
 @include('partials/scripts')
 <script>
 </script>

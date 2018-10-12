@@ -20,18 +20,6 @@ Next laravel wil be needing a [key] so be will generate it.
 docker-compose exec web php artisan key:generate
 ```
 
-In case the collection is not initialize run
-```
-docker exec -it mongodb bash
-```
-Inside the bash on mongo DB
-```
-mongo users
-db.createCollection('users')
-exit
-exit
-```
-
 
 ## Getting Started
 To see the page please, use this address in your browser
@@ -46,42 +34,26 @@ PORT 8100
 
 Docker install on machine.
 
-## Running the tests
+## Error and troubleshooting
+If you are not able to save items, please follow this steps:
 
-Explain how to run the automated tests for this system
-
-### Break down into end to end tests
-
-Explain what these tests test and why
-
+In case the collection is not initialize run
 ```
-Give an example
+docker exec -it mongodb bash
 ```
-
-### And coding style tests
-
-Explain what these tests test and why
-
+Inside the bash on mongo DB
 ```
-Give an example
+mongo users
+db.createCollection('users')
+exit
+exit
 ```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
 
 ## Built With
 
 * [Laravel](https://laravel.com/docs/5.7) 
 * [MongoDB](https://www.mongodb.com/) 
 
-## Contributing
-
-Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c63ec426) for details on our code of conduct, and the process for submitting pull requests to us.
-
-## Versioning
-
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
 ## Authors
 

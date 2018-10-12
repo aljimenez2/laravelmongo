@@ -15,9 +15,20 @@ RUN php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=
 
 # install missing extensions (and locales)
 RUN apt-get update && \
-        apt-get install -y zlib1g-dev libicu-dev locales
+        apt-get install -y zlib1g-dev libicu-dev locales libpng-dev
 RUN docker-php-ext-install mbstring zip pdo_mysql
 RUN pecl install mongodb && docker-php-ext-enable mongodb
+RUN apt-get install -y --no-install-recommends \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libxpm-dev \
+    libvpx-dev \
+&& docker-php-ext-configure gd \
+    --with-freetype-dir=/usr/lib/x86_64-linux-gnu/ \
+    --with-jpeg-dir=/usr/lib/x86_64-linux-gnu/ \
+    --with-xpm-dir=/usr/lib/x86_64-linux-gnu/ \
+    --with-vpx-dir=/usr/lib/x86_64-linux-gnu/ \
+&& docker-php-ext-install gd
 #RUN echo "extension=mongodb.so" >> /etc/php/7.2/apache2/php.ini
 
 # Generate locale for es_AR

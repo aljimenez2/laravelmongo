@@ -6,8 +6,6 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
-use Monolog\Handler\Mongo;
-use Monolog\Handler\MongoDBHandler;
 
 class UserController extends Controller
 {
@@ -18,8 +16,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        $db = new \MongoDB();
-        $db->createCollection('users');
         $users = User::orderBy('position')->get();
         $counter = User::all()->count();
         return view('welcome', compact('users', 'counter'));
@@ -56,7 +52,7 @@ class UserController extends Controller
 
     public function updateUserList(){
         $users = User::orderBy('position')->get();
-        return view("partials.usersitems", compact('users'));
+        return view("partials.usersItems", compact('users'));
     }
 
     /**
@@ -82,7 +78,7 @@ class UserController extends Controller
         Storage::disk('public')->put($photoname, $img, 'public');
         $user->save();
         $users = User::orderBy('position')->get();
-        return view("partials.usersitems", compact('users'));
+        return view("partials.usersItems", compact('users'));
     }
 
     /**
@@ -139,7 +135,7 @@ class UserController extends Controller
         }
         $user->update();
         $users = User::orderBy('position')->get();
-        return view("partials.usersitems", compact('users'));
+        return view("partials.usersItems", compact('users'));
     }
 
     /**
@@ -154,6 +150,6 @@ class UserController extends Controller
         $id = $request->input("id");
         $user = $dUser->where('_id', $id)->delete();
         $users = User::orderBy('position')->get();
-        return view("partials.usersitems", compact('users'));
+        return view("partials.usersItems", compact('users'));
     }
 }
