@@ -1,7 +1,7 @@
 # User List Laravel + MongoDB + Muuri
 
 This project will let you use a dinamic table with Drag and Drop elements.
-You will we capable of Adding, editing and deleting users for the table.
+You will we capable of adding, editing and deleting users for the table.
 
 ### Installing
 
@@ -26,7 +26,7 @@ docker-compose exec web php artisan key:generate
 ```
 
 
-## Getting Started
+### Getting Started
 For Windows
 To see the page please, use this address in your browser
 ```
@@ -48,7 +48,14 @@ default   *        virtualbox   Running   tcp://192.168.99.100:2376           v1
 testb     -        virtualbox   Running   tcp://192.168.99.101:2376           v18.06.1-ce
 ```
 
-### Prerequisites
+#Adding the main info
+Once you are in the main page, go to the url. 
+This will create a preloaded info so you can star using the APP.
+```
+http://127.0.0.1:8000/users/createInitial
+```
+
+## Prerequisites
 
 Docker install on machine.
 
