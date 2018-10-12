@@ -20,6 +20,18 @@ Next laravel wil be needing a [key] so be will generate it.
 docker-compose exec web php artisan key:generate
 ```
 
+In case the collection is not initialize run
+```
+docker exec -it mongodb bash
+```
+Inside the bash on mongo DB
+```
+mongo users
+db.createCollection('users')
+exit
+exit
+```
+
 
 ## Getting Started
 To see the page please, use this address in your browser

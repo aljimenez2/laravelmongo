@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
+use Monolog\Handler\Mongo;
+use Monolog\Handler\MongoDBHandler;
 
 class UserController extends Controller
 {
@@ -16,6 +18,8 @@ class UserController extends Controller
      */
     public function index()
     {
+        $db = new \MongoDB();
+        $db->createCollection('users');
         $users = User::orderBy('position')->get();
         $counter = User::all()->count();
         return view('welcome', compact('users', 'counter'));
