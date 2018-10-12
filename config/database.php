@@ -34,7 +34,7 @@ return [
     'connections' => [
         'mongodb' => [
             'driver'   => 'mongodb',
-            'host'     => '192.168.99.100',
+            'host'     => 'localhost',
             'port'     => 27017,
             'database' => 'users',
         ],

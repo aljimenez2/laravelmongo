@@ -113,10 +113,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        $user = User::where($id);
-        return success;
+        $position = User::all()->count();
+        $uuser = new User();
+        $id_user = $request->input('id_user');
+        $user = $uuser->where("_id", $id_user)->first();
+        $description  = ($request->input('description') !== null) ? $request->input('description') : "";
+        $photo  = ($request->input('photo') !== null) ? $request->input('photo') : "";
+        $user->description =  $description;
+        if($photo != "") {
+            $_photo = $request->file("photo");
+            $photoname = uniqid() . time() . '.' . $_photo->getClientOriginalExtension();
+            $user->photo = $photoname;
+            $img = Image::make($_photo->getRealPath());
+            $img->resize(320, 320, function ($constrain) {
+                $constrain->aspectRatio();
+            });
+            $img->stream();
+            Storage::disk('public')->put($photoname, $img, 'public');
+        }
+        $user->update();
+        $users = User::orderBy('position')->get();
+        return view("partials.usersitems", compact('users'));
     }
 
     /**

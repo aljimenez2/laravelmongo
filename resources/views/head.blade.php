@@ -11,7 +11,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/colors.css') }}">
     <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
     <link rel="stylesheet" href="{{ asset('css/customFileInputs/component.css') }}">
 
@@ -27,7 +26,6 @@
     {{--<script src="{{asset('js/jquery.validate.js')}}"></script>--}}
     <script src="{{asset('js/bootstrap.js')}}"></script>
     <script src="{{asset('js/customFileInput/jquery.custom-file-input.js')}}"></script>
-    <script src="{{asset('js/jquery.creditCardValidator.js')}}"></script>
     <script src="{{asset('js/muuri/muuri.js')}}"></script>
     <script src="{{asset('js/muuri/hammer.min.js')}}"></script>
     <script src="{{asset('js/jquery.toaster.js')}}"></script>
