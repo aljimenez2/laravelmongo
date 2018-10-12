@@ -48,7 +48,7 @@ default   *        virtualbox   Running   tcp://192.168.99.100:2376           v1
 testb     -        virtualbox   Running   tcp://192.168.99.101:2376           v18.06.1-ce
 ```
 
-#Adding the main info
+## Adding the main info
 Once you are in the main page, go to the url. 
 This will create a preloaded info so you can star using the APP.
 ```
