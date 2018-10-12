@@ -1,6 +1,6 @@
 <form action="post" class="col-md-8 offset-md-2 p-2" id="formNewUser"
       style="box-shadow: 0px 5px 5px 0px #cccccc; border-radius: 4px">
-    <h2 class="my-2">New user</h2>
+    <h2 class="my-2" id="nameform">New user</h2>
     <span class="counte"></span>
     <div class="" name="1">
         <img src="{{asset('img/no-image.jpg')}}" id="file" class="img-fluid" width="320px"
@@ -21,7 +21,8 @@
                 <span>Choose a file&hellip;</span></label>
         </div>
         <labe>Description</labe>
-        <input type="text" class="form-control" name="description" id="description" max="300">
+        {{--<input type="text" class="form-control" name="description" id="description" max="300">--}}
+        <textarea type="text" class="form-control" name="description" id="description"></textarea>
         <input type="hidden" id="id_user" value="" name="id_user">
         <button type="submit" class="btn btn-primary form-control my-4">Submit</button>
     </div>

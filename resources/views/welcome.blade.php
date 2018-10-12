@@ -26,7 +26,7 @@
                                         <span class="helper"></span>
                                         <img src="{{ asset('img/'.$user->photo) }}" alt="Card image cap">
                                     </div>
-                                    <h3 class="card-text text-center">{{ $user->description }}</h3>
+                                    <h3 class="card-text text-center" style="font-size: 0.85em; overflow-x: hidden">{{ $user->description }}</h3>
                                     <p class="text-center">
                                         <a href="#" class="edit" data-selector="{{$user->id}}"><i class="fa fa-edit fa-1x my-3"></i> Edit</a>
                                         <a href="#" class="delete" data-selector="{{$user->id}}"><i class="fa fa-trash fa-1x my-3"></i>
@@ -44,6 +44,7 @@
 @extends('footer')
 @include('partials/scripts')
 <script>
+    $("#newUserdiv").hide();
 </script>
 <head>
 </head>

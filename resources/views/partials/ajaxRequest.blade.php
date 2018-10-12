@@ -1,16 +1,23 @@
 <script>
-
+    $("#newUser").on('click', function () {
+        $("#nameform").text("Create new user");
+        $("#file").attr("src","{{asset('img/no-image.jpg')}}");
+        $("#description").val("");
+        $("#newUserdiv").toggle('slow');
+        $('#id_user').val("");
+        changeButtonNewUser($(this).attr('data-toggle'));
+    });
 
     $(document).on('click', ".edit", function (e) {
+        $("#nameform").text("Edit User");
         var id = $(this).attr('data-selector');
-        console.log(id);
         $.ajax('{{url('users/edit')}}', {
             method: "POST",
             data: {"id": id},
             success: function (response) {
                 if ($("#newUser").attr('data-toggle') == 1) {
                     $("#newUserdiv").toggle('slow');
-                    changeButtonNewUser($(this).attr('data-toggle'));
+                    changeButtonNewUser(1);
                 }
                 $('#description').val(response.description);
                 $('#file').attr('src', "{{asset("img/")}}/"+response.photo);

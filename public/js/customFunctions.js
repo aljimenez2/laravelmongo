@@ -3,12 +3,22 @@
  */
 
 // Hiddding the user form
-$("#newUserdiv").hide();
-$("#newUser").on('click', function () {
-    $("#newUserdiv").toggle('slow');
-    changeButtonNewUser($(this).attr('data-toggle'));
-});
 
+
+
+$(document).on("keyup", '#description', function(){
+    var description = $("#description");
+    var max = 300;
+    if (description.val().length > max) {
+        description.val(description.val().substr(0, max));
+        $.toaster({
+            message: "Maximun amount of characters for description is 300",
+            title: 'Message',
+            priority: 'warning',
+            settings: {'timeout': 2000}
+        });
+    }
+});
 // Initalizing the Counter
 counterN();
 
@@ -46,6 +56,9 @@ function changeButtonNewUser(value) {
         btn.addClass("btn-success");
         btn.attr('data-toggle', 1);
     }
+}
+
+function checkMaxLength (text, max) {
 }
 
 

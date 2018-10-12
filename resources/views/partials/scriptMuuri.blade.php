@@ -22,10 +22,9 @@
                 dragContainer: document.body,
                 dragReleaseDuration: 400,
                 dragReleaseEasing: 'ease',
-                dragStartPredicate: function (item, event) {
-                    // Prevent first item from being dragged.
-                    // For other items use the default drag start predicate.
-                    return Muuri.ItemDrag.defaultStartPredicate(item, event);
+                dragStartPredicate: {
+                    distance: 100,
+                    delay: 100
                 },
             })
                 .on('dragStart', function (item) {
